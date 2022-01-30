@@ -1,88 +1,43 @@
-# Welcome to IonQ + Microsoft Joint Challenge @ MIT iQuHACK 2022!
+# iQuHACK 2022 Microsoft + ionQ challenge
+Authors: Bárbara Andrade, Braulio Antonio, Roberto Arevalo, and Rodrigo Chaves
 
-<p align="left">
-  <a href="https://azure.microsoft.com/en-us/solutions/quantum-computing/" target="_blank"><img src="https://user-images.githubusercontent.com/10100490/151488491-609828a4-cd1f-4076-b5b2-a8d9fc2d0fa4.png" width="30%"/> </a>
-  <a href="https://ionq.com/" target="_blank"><img src="https://user-images.githubusercontent.com/10100490/151488159-da95eb05-9277-4abe-b1ba-b49871d563ed.svg" width="20%" style="padding: 1%;padding-left: 5%"/></a>
-  <a href="https://iquhack.mit.edu/" target="_blank"><img src="https://user-images.githubusercontent.com/10100490/151647370-d161d5b5-119c-4db9-898e-cfb1745a8310.png" width="8%" style="padding-left: 5%"/> </a>
-  
-</p>
+# Amaze Maze 
 
+A quantum program was written to create the Quantum Amaze Maze. The game was created as part of the IonQ + Microsoft Joint Challenge @ MIT iQuHACK 2022. The Quantum Amaze Maze contains quantum computing aspects. The game consists of the user choosing gates which will result in realization of a specific state. After the decisions are made entanglement can be calculated. The decision to use a switchgate was done for simplicity. The use of Microsoft Azure with Qiskit and IonQ was used in the creation of the game. Qiskit and IonQ allow for programming in Python.
 
-Quantum computing has many exciting applications in chemistry, machine learning, and optimization – but we've only scratched the surface of the possibilities as a civilization, just like classical computing in the 1950s. We hope you all go on to do quantum algorithms research that will revolutionize every aspect of society for the better!
+## Brief description
+We propose a quantum maze: the user is given a 4-qubit product state $|{0000}\rangle$, and the goal is to choose a sequence of gates (we regard this as a quantum path) which produces a maximally mixed state in the end (shows all possible outputs with same probability).
 
-Today, though, we've got just 26 hours, and we'd like you to use a quantum computer to build a game, or a component of a game.
+## Motivation
+Quantum mechanics is a fascinating theory that features some counter-intuitive phenomena. In this project, we give the user the opportunity to experience the manifestation of a key aspect of the quantum theory: the non-commutativity of physical observables. In the game, the player uses such ingredient to create a maximally mixed state.
 
-The possibilities should feel as big as the ones offered by your regular computer! A few ideas to juice your thinking:
-* Use a quantum computer as a random number generator or noise source for
-  - seeding behaviors
-  - procedurally generating maps or music
-* Use quantum logic itself as a gaming mechanism, whether for fun or education
-* Apply Quantum Machine Learning to gameplay
-* [Run Doom... on the universe?](https://www.smbc-comics.com/comic/qc)
+## Physics
+This game was inspired in the Stern-Gerlach experiment. Besides the $\sigma_x$ and $\sigma_z$ operators, the game allows the following 1-qubit, and 2-qubit gates: $\sigma_z$, Hadamard, CNOT, SWAP, CHadamard, CX, CY, and CZ. Some of these operators do not commute, and this creates quantum superpositions.
 
-You’ll be able to test your projects on a real ion trap quantum computer provided by IonQ (which [shoots lasers at individual atoms to compute](https://ionq.com/technology)).
-*Remember that current devices are still NISQ, and noise can overtake the computation really fast. We recommend you experiment with circuits that use under a few dozen two-qubit gates.*
+Although we know entangled states are created through the game, it is not straightforward to quantify entanglement since we are dealing with a real quantum computing experiment, and its outputs are probabilities associated to product 4-qubit states. For this reason, in the game we propose that the user creates a maximally mixed state, which is a state we know how to identify: it has probability equals $\frac{1}{16}$ for all possible modes.
 
-You can develop your project using any language supported by Azure Quantum: Q#, Qiskit, or Cirq.
+Given a set of output probabilities $\{p_j\}$, we associate a score to it, defined as how much it deviates from the maximally mixed probability distribution. $s(dP) = \frac{1-dP}{1-dE}$, where $dP$ and $dE$ are Manhattan distances between a point, corresponding to a probability distribution, and the origin in a $2^4$ real space. The maximally mixed state is the one that minimizes this distance. With this definition, the score ranges from 0 to 1.
 
-## Using Azure Quantum
-You should have received an invite to join quantum workspace https://portal.azure.com/52f51314-00bb-49b7-a28d-0b0a4be6d1c9. Join it, and use that workspace’s information to connect to Azure from the environment you’re using to work with the QDK:
-* Subscription ID: b1d7f7f8-743f-458e-b3a0-3e09734d716d
-* Resource group: aq-hackathons
-* Workspace name: aq-hackathon-01
-* Location: eastus
+## Game mechanics
+The game is in the file "the amaze maze.ipynb" and you need to run all the cells before playing. 
 
-You can use it from Python by using the `azure-quantum` package as follows:
+The games mechanics is the following:
 
-```python
-from azure.quantum import Workspace
-workspace = Workspace (
-    subscription_id = "b1d7f7f8-743f-458e-b3a0-3e09734d716d",
-    resource_group = "aq-hackathons",
-    name = "aq-hackathon-01",
-    location = "eastus"
-)
-```
+- Every round the player starts in the 4-qubit state $|{0000}\rangle$;
+- Every round has 5 stages (this can be modified in a later version);
+- In each stage the player can choose between two different gates to apply (by inputing a or b) to some of their qubits (so far we have included only 1 and 2 qubit gates);
+- At the end the player will receive a score that is calculated as defined above. We cannot directly measure how entangled this state is, but maximally mixed states are always maximally entangled;
+- The maximum score and name of the player who scored is saved for subsequent rounds.
 
-Don't wait until the last moment to submit your programs! IonQ systems operate on a queue system. If you submit a program, it may take a few hours to complete. If you want to make sure you get your results back by Sunday morning, make sure to submit them by the end of day on Saturday.
+The "1 round of the game on the quantum hardware.png" includes a screenshot of the game.
 
-## Submitting your projects
-To submit your solutions:
-1. Fork this repository to your GitHub account.
-2. Commit your project to your forked repository.  
-Include any files you consider relevant: the project itself, README including the description of the project and instructions on running the project, screenshots of results, any visualizations you've done, your project presentation, etc.
-3. To submit your project, submit the link to your repository as detailed on https://iquhack.mit.edu/.
-Your repository has to be made public at the time of the Hackathon end for us to be able to judge your solutions. We don't recommend making your work public early during the Hackathon, so as not to tempt other teams to borrow from your work. Let everybody enjoy their exploration!
-*Note that GitHub doesn't allow to change visibility of the forks. You can either fork the repository, keep it public, and push your changes at the last possible moment, or you can duplicate the repository, make it private to work on it during the Hackathon, and make it public at the end of the Hackathon.*
-4. If you want to write a blog post about your project, publish it shortly after the Hackathon ends and add a link to it to your GitHub repository.
+## What's next
+There are two things that could be easly implemented to make the game more fun! 
 
-## Judging
+The first one is to connect our quantum backend with a real maze game like the one in maze.py (the code is from Keno Leon: https://k3no.medium.com/build-a-maze-with-python-920ac2266fe7 ). 
 
-We'll be evaluating the projects based on several criteria, as detailed in this **rubric:** 
+The second is to add more qubit gates!
+There are more than 70 gates available on qiskit and it is just a matter of some more lines of code to have them in our game.
 
-https://docs.google.com/document/u/1/d/e/2PACX-1vR5PVoInN_Fi42lIOchhblgGBPblgNyouj1XHukonZ4sdqY-p5ulS9TxdzvddEcDNFc5k_6teFyKzXv/pub
-
-## Eligibility and prizes
-The (1) highest team score will receive a **$500 Visa Gift Card** (physical or virtual) for the team. The next (4) highest team scores will receive a **$250 Visa Gift Card** (physical or virtual) for the team. The (5) winning teams will have an opportunity to present their projects to the Microsoft Quantum Team at a later date and time (to be scheduled after the results announcement).
-
-Government officials and Microsoft employees are not eligible to participate in this challenge.
-
-For the general rules on eligibility and hackathon participation, please refer to the [official rules](http://iquhack.mit.edu/).
-
-## Resources
-
-### Microsoft Quantum Development Kit installation
-
-For this Hackathon, you have several options of setting up the QDK:
-
-* local setup: you'll need the [standalone QDK](https://docs.microsoft.com/en-us/azure/quantum/install-command-line-qdk), and possibly (depending on what kind of project you decide to do) integration with [Q# Jupyter Notebooks](https://docs.microsoft.com/en-us/azure/quantum/install-jupyter-qkd) and/or with [Python](https://docs.microsoft.com/en-us/azure/quantum/install-python-qdk).
-* qBraid: you can use qBraid virtual environment to develop your project. Here are the tutorials on how to [use Q# with qBraid](https://www.youtube.com/watch?v=E5JH1YfqSos) and [submit Azure Quantum jobs with qBraid](https://www.youtube.com/watch?v=WLAAqsqlYb8).
-* Azure Portal: you can use the hosted notebooks experience to run code directly from Azure Portal.
-
-### Documentation and tutorials
-
-* [Azure Quantum and QDK documentation](https://docs.microsoft.com/quantum).
-* [The Quantum Katas](https://github.com/Microsoft/QuantumKatas/) - a collection of tutorials and practice problems.
-* Microsoft Learn learing path ["Quantum computing foundations"](https://docs.microsoft.com/learn/paths/quantum-computing-fundamentals/).
-* [Q# developer blog](https://devblogs.microsoft.com/qsharp/).
-* Azure Fridays episode [Quantum programming with Q# and running on hardware with Azure Quantum](https://www.youtube.com/watch?v=c9Df90CVHkc) shows the end-to-end quantum software development process with the QDK tools.
+## Team's experience
+It has been a positive experience for all of us being able to collaborate and learn from the scholars from MIT and other institutions. Being able to listen and participate in the tutorials and talks from professors of different universities has also been very insightful. Gaining experience with Microsoft's quantum hardwares that are used in the field of quantum computing has been invaluable. This was the first hackthon for most of us, and there were several new things, such as taking initiative, brainstorming, and having to work with very limited time. It feels refreshing to participate in a project just for fun and not for work.
