@@ -41,3 +41,6 @@ There are more than 70 gates available on qiskit and it is just a matter of some
 
 ## Team's experience
 It has been a positive experience for all of us being able to collaborate and learn from the scholars from MIT and other institutions. Being able to listen and participate in the tutorials and talks from professors of different universities has also been very insightful. Gaining experience with Microsoft's quantum hardwares that are used in the field of quantum computing has been invaluable. This was the first hackathon for most of us, and there were several new things, such as taking initiative, brainstorming, and having to work with very limited time. It feels refreshing to participate in a project just for fun and not for work.
+
+## Link to presentation!
+https://docs.google.com/presentation/d/1Yoxlu7wUPkGhHYH9V8vZ1PizcXqinkEVudkeapg6W7c/edit?usp=sharing 
