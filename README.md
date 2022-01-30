@@ -12,7 +12,7 @@ We propose a quantum maze: the user is given a 4-qubit product state $|{0000}\ra
 Quantum mechanics is a fascinating theory that features some counter-intuitive phenomena. In this project, we give the user the opportunity to experience the manifestation of a key aspect of the quantum theory: the non-commutativity of physical observables. In the game, the player uses such ingredient to create a maximally mixed state.
 
 ## Physics
-This game was inspired in the Stern-Gerlach experiment. Besides the $\sigma_x$ and $\sigma_z$ operators, the game allows the following 1-qubit, and 2-qubit gates: $\sigma_z$, Hadamard, CNOT, SWAP, CHadamard, CX, CY, and CZ. Some of these operators do not commute, and this creates quantum superpositions.
+The game allows the following 1-qubit, and 2-qubit gates: X,Y,Z, Hadamard, CNOT, SWAP, CHadamard, CX, CY, and CZ. Some of these operators do not commute, and this creates quantum superpositions.
 
 Although we know entangled states are created through the game, it is not straightforward to quantify entanglement since we are dealing with a real quantum computing experiment, and its outputs are probabilities associated to product 4-qubit states. For this reason, in the game we propose that the user creates a maximally mixed state, which is a state we know how to identify: it has probability equals $\frac{1}{16}$ for all possible modes.
 
