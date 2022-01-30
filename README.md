@@ -16,7 +16,7 @@ The game allows the following 1-qubit, and 2-qubit gates: X,Y,Z, Hadamard, CNOT,
 
 Although we know entangled states are created through the game, it is not straightforward to quantify entanglement since we are dealing with a real quantum computing experiment, and its outputs are probabilities associated to product 4-qubit states. For this reason, in the game we propose that the user creates a maximally mixed state, which is a state we know how to identify: it has probability equals $\frac{1}{16}$ for all possible modes.
 
-Given a set of output probabilities $\{p_j\}$, we associate a score to it, defined as how much it deviates from the maximally mixed probability distribution. $s(dP) = \frac{1-dP}{1-dE}$, where $dP$ and $dE$ are Manhattan distances between a point, corresponding to a probability distribution. We get a distance measure that goes from 0 to 1 from how close the state is to the maximally mixed state. The maximally mixed state is the one that minimizes this distance. With this definition, the score ranges from 0 to 1.
+Given a set of output probabilities $\{p_j\}$, we associate a score to it, defined as how much it deviates from the maximally mixed probability distribution. $s(dP) = \frac{1-dP}{1-dE}$, where $dP$ and $dE$ are Manhattan distances between a point, corresponding to a probability distribution. We get a distance measure that goes from 0 to 1 from how close the state is to the maximally mixed state. 
 
 ## Game mechanics
 The game is in the file "the amaze maze.ipynb" and you need to run all the cells before playing. 
